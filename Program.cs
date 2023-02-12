@@ -1,86 +1,157 @@
-//Dz sem 6:
+// DZ sem 7:
 
-// // Zad 1: Пользователь вводит с клавиатуры M чисел. Посчитайте, сколько чисел больше 0 ввёл пользователь.
+// zad 1: Задайте двумерный массив размером m×n, заполненный случайными вещественными числами.
 
 // Console.Clear();
 
-// Console.Write("Введите сколько чисел хотите ввести: ");
-// int M = Convert.ToInt32(Console.ReadLine());
-// int[] UserArray = new int[M];
-// for (int i = 0; i < M; i++)
-// {
-//     Console.Write($"Введите {i + 1} число: ");
-//     UserArray[i] = Convert.ToInt32(Console.ReadLine());
-// }
+// Console.Write("Введите количество строк массива: ");
+// int rows = Convert.ToInt32(Console.ReadLine());
 
-// int CountPositiveNumbers(int[] Array)
+// Console.Write("Введите количество столбцов массива: ");
+// int columns = Convert.ToInt32(Console.ReadLine());
+
+// double[,] Array = RandomArray(rows, columns, 0, 100);
+// PrintArray(Array);
+
+// double[,] RandomArray(int m, int n, int start, int end)
 // {
-//     int j = 0;
-//     foreach (int i in Array)
+//     double[,] result = new double[m, n];
+//     for (int i = 0; i < m; i++)
 //     {
-//         if (i > 0)
+//         for (int j = 0; j < n; j++)
 //         {
-//             j += 1;
+//             result[i, j] = new Random().NextDouble() * (start - end);
 //         }
 //     }
-//     return j;
+//     return result;
 // }
 
-// void ShowArray(int[] Arr)
+// void PrintArray(double[,] Array)
 // {
-//     for (int i = 0; i < Arr.Length; i++)
+//     for (int i = 0; i < Array.GetLength(0); i++)
 //     {
-//         Console.Write(Arr[i] + " ");
-//     }
-//     Console.WriteLine();
-// }
-
-// ShowArray(UserArray);
-// Console.WriteLine($"Введено чисел > 0: {CountPositiveNumbers(UserArray)}");
-
-// // Zad 2:  Напишите программу, которая найдёт точку пересечения двух прямых, заданных уравнениями
-// //         y = k1 * x + b1, y = k2 * x + b2; значения b1, k1, b2 и k2 задаются пользователем.
-
-// Console.Clear();
-
-// Console.Write("Введите значение b1: ");
-// var b1 = Convert.ToDouble(Console.ReadLine());
-
-// Console.Write("Введите значение k1: ");
-// var k1 = Convert.ToDouble(Console.ReadLine());
-
-// Console.Write("Введите значение b2: ");
-// var b2 = Convert.ToDouble(Console.ReadLine());
-
-// Console.Write("Введите значение k2: ");
-// var k2 = Convert.ToDouble(Console.ReadLine());
-
-// if (b1 == b2 && k1 == k2)
-// {
-//     Console.WriteLine("Прямые лежат друг на друге");
-// }
-// else if (b1 == b2 || k1 == k2)
-// {
-//     Console.WriteLine("Прямые параллельны");
-// }
-// else
-// {
-//     double[] CrossPoint(double ArrB1, double ArrK1, double ArrB2, double ArrK2)
-//     {
-//         double[] result = new double[2];
-//         result[0] = (ArrB2 - ArrB1) / (ArrK1 - ArrK2);
-//         result[1] = ArrK1 * result[0] + ArrB1;
-//         return result;
-//     }
-
-//     void ShowArray(double[] Arr)
-//     {
-//         for (int i = 0; i < Arr.Length; i++)
+//         for (int j = 0; j < Array.GetLength(1); j++)
 //         {
-//             Console.Write(Arr[i] + " ");
+//             Console.Write($"{Array[i, j]:f3} ");
 //         }
 //         Console.WriteLine();
 //     }
+// }
 
-//     ShowArray(CrossPoint(b1, k1, b2, k2));
+// zad 2: Напишите программу, которая на вход принимает позиции элемента в двумерном массиве, и возвращает значение этого элемента или же указание, что такого элемента нет.
+// Console.Clear();
+
+// Console.Write("Введите количество строк массива: ");
+// int rows = Convert.ToInt32(Console.ReadLine());
+
+// Console.Write("Введите количество столбцов массива: ");
+// int columns = Convert.ToInt32(Console.ReadLine());
+
+// Console.Write("Введите значение элемента: ");
+// int element = Convert.ToInt32(Console.ReadLine());
+
+// int[,] Array = RandomArray(rows, columns, 0, 100);
+// PrintArray(Array);
+
+// if (ElementSearch(Array, element))
+// {
+//     Console.WriteLine("Элемент найден");
+// }
+// else
+// {
+//     Console.WriteLine("Элемент не найден");
+// }
+
+// int[,] RandomArray(int m, int n, int start, int end)
+// {
+//     int[,] result = new int[m, n];
+//     for (int i = 0; i < m; i++)
+//     {
+//         for (int j = 0; j < n; j++)
+//         {
+//             result[i, j] = new Random().Next(start, end + 1);
+//         }
+//     }
+//     return result;
+// }
+
+// void PrintArray(int[,] Array)
+// {
+//     for (int i = 0; i < Array.GetLength(0); i++)
+//     {
+//         for (int j = 0; j < Array.GetLength(1); j++)
+//         {
+//             Console.Write($"{Array[i, j]} ");
+//         }
+//         Console.WriteLine();
+//     }
+// }
+
+// bool ElementSearch(int[,] Array, int el)
+// {
+//     for (int i = 0; i < Array.GetLength(0); i++)
+//     {
+//         for (int j = 0; j < Array.GetLength(1); j++)
+//         {
+//             if (Array[i, j] == el)
+//             {
+//                 return true;
+//             }
+//         }
+//     }
+//     return false;
+// }
+// zad 3: Задайте двумерный массив из целых чисел. Найдите среднее арифметическое элементов в каждом столбце.
+// Console.Clear();
+
+// Console.Write("Введите количество строк массива: ");
+// int rows = Convert.ToInt32(Console.ReadLine());
+
+// Console.Write("Введите количество столбцов массива: ");
+// int columns = Convert.ToInt32(Console.ReadLine());
+
+// int[,] Array = RandomArray(rows, columns, 0, 100);
+// PrintArray(Array);
+
+// double[] MiddleSum = ResultArray(Array);
+// Console.WriteLine($"Среднее Арифметическое столбцов = {String.Join("; ", MiddleSum)}");
+
+// int[,] RandomArray(int m, int n, int start, int end)
+// {
+//     int[,] result = new int[m, n];
+//     for (int i = 0; i < m; i++)
+//     {
+//         for (int j = 0; j < n; j++)
+//         {
+//             result[i, j] = new Random().Next(start, end + 1);
+//         }
+//     }
+//     return result;
+// }
+
+// void PrintArray(int[,] Array)
+// {
+//     for (int i = 0; i < Array.GetLength(0); i++)
+//     {
+//         for (int j = 0; j < Array.GetLength(1); j++)
+//         {
+//             Console.Write($"{Array[i, j]} ");
+//         }
+//         Console.WriteLine();
+//     }
+// }
+
+// double[] ResultArray(int[,] Array)
+// {
+//     double[] result = new double[Array.GetLength(1)];
+//     for (int i = 0; i < Array.GetLength(1); i++)
+//     {
+//         double sum = 0;
+//         for (int j = 0; j < Array.GetLength(0); j++)
+//         {
+//             sum += Array[j, i];
+//         }
+//         result[i] = Math.Round(sum / Array.GetLength(0), 2);
+//     }
+//     return result;
 // }
